@@ -130,14 +130,6 @@
 <UserName></UserName>
 <Password></Password>
 <Comments></Comments>
-<File CompileType="None" Type="DUET"><Identifier>MSI_Framework_dr2_0_0</Identifier>
-<FilePathName>MSI_Framework_dr2_0_0.jar</FilePathName>
-<Comments></Comments>
-</File>
-<File CompileType="Netlinx" Type="MasterSrc"><Identifier>template</Identifier>
-<FilePathName>template.axs</FilePathName>
-<Comments></Comments>
-</File>
 </System>
 </Project>
 </Workspace>

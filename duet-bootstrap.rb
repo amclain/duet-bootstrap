@@ -3,16 +3,44 @@
 # By Alex McLain <alex@alexmclain.com>
 #
 # This script was designed to run on Ruby v2.0.0
+# http://www.ruby-lang.org/en/downloads/
 #
-# This script generates a NetLinx workspace and source code
-# to start up a Duet module. It is intended to be used when
-# the entire AMX system has been programmed in Duet.
+# OVERVIEW
 #
-# On Windows, open the command line by holding shift and
-# right clicking in Windows Explorer. Select "Open command
-# window here". Run this script and pass the Duet module
-# as a parameter in the file path.
-# Example: > duet-bootstrap.rb My_Duet_File_dr1_0_0.jar
+#	This script generates a NetLinx workspace and source code to start
+#	up a Duet module. It is intended to be used when the entire AMX
+#	system has been programmed in Duet.
+#
+# CONFIGURATION
+#
+#	It is recommended, although not required, to add this script to
+#	your operating system's PATH environment varialbe so that the
+#	script can be called from within the folder of a Duet project.
+#	There is plenty of information on the internet on how to do this.
+#
+#	If you would like to change the default AMX master that will be
+#	used when generating workspaces, open the NetLinx Workspace file
+#	located at /template/template.apw. Modify the communication
+#	settings, save the workspace, and close NetLinx Studio.
+#
+# EXECUTION
+#
+#	This script will run on many different operating systems.
+#
+#	On Windows, the fastest and easiest way to use this script is
+#	through the command line. Open Windows Explorer and browse
+#	to the folder of your compiled Duet .jar file. Hold shift
+#	and right-click in the empty space of the file browser pane,
+#	then select "Open command window here" from the context menu.
+#
+#	Run this script and pass the Duet module as a parameter in
+#	the file path. Pressing the tab key will auto-complete the
+#	file name.
+#	
+#	Example: > duet-bootstrap My_Duet_File_dr1_0_0.jar
+#
+#	The script will generate a workspace and source file in the
+#	working directory.
 
 require 'rexml/document'
 
