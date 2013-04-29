@@ -16,6 +16,8 @@
 
 require 'rexml/document'
 
+templatePath = "#{File.dirname(__FILE__)}/template"
+
 params = Hash.new
 
 # Initialize parameters.
@@ -43,7 +45,7 @@ params[:duetModuleName] = File.basename(params[:duetModulePath], '.jar')
 params[:projectName] = params[:duetModuleName][/(.*)_dr[0-9]+/, 1].gsub(/_/, ' ')
 
 # Import existing AMX workspace template.
-workspaceTemplate = File.open('template/template.apw', 'r')
+workspaceTemplate = File.open("#{templatePath}/template.apw", 'r')
 xml = REXML::Document.new(workspaceTemplate)
 
 # Rename the workspace.
@@ -99,7 +101,7 @@ File.open("#{params[:projectName]}.apw", 'w') do |file|
 end
 
 # Import NetLinx source code file template.
-template = File.open('template/template.axs', 'r').read
+template = File.open("#{templatePath}/template.axs", 'r').read
 
 template.gsub!(/%%_PROJECT_NAME_%%/, params[:projectName])
 template.gsub!(/%%_MODULE_NAME_%%/, params[:duetModuleName])
