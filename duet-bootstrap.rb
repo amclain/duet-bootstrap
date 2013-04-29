@@ -63,7 +63,7 @@ end
 
 params[:duetModulePath] = ARGV[0].strip
 
-# Check file extension.
+# Check Duet file extension.
 unless File.extname(params[:duetModulePath]).downcase == '.jar'
 	puts 'Input file was not a Duet file.'
 	exit
@@ -71,7 +71,6 @@ end
 
 # Parse Duet module name.
 params[:duetModuleName] = File.basename(params[:duetModulePath], '.jar')
-#params[:duetModuleName] = params[:duetModulePath][/(.*)_dr[0-9]+/, 1]
 params[:projectName] = params[:duetModuleName][/(.*)_dr[0-9]+/, 1].gsub(/_/, ' ')
 
 # Import existing AMX workspace template.
@@ -126,6 +125,7 @@ xml.elements.each('/Workspace/Project/System') do |e|
 end
 
 
+# Save workspace.
 File.open("#{params[:projectName]}.apw", 'w') do |file|
 	file << xml
 end
@@ -137,6 +137,7 @@ template = File.open("#{templatePath}/template.axs", 'r').read
 template.gsub!(/%%_PROJECT_NAME_%%/, params[:projectName])
 template.gsub!(/%%_MODULE_NAME_%%/, params[:duetModuleName])
 
+# Save source code file.
 File.open("#{params[:projectName]}.axs", 'w') do |file|
 	file << template
 end
