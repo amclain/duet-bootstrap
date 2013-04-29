@@ -11,16 +11,20 @@
 #	up a Duet module. It is intended to be used when the entire AMX
 #	system has been programmed in Duet.
 #
+#	This script will generate a workspace and source file in the
+#	working directory. It will also compile the generated source
+#	code if the NetLinx compiler executable is found.
+#
 # CONFIGURATION
 #
 #	It is recommended, although not required, to add this script to
-#	your operating system's PATH environment varialbe so that the
+#	your operating system's PATH environment variable so that the
 #	script can be called from within the folder of a Duet project.
 #	There is plenty of information on the internet on how to do this.
 #
 #	If you would like to change the default AMX master that will be
 #	used when generating workspaces, open the NetLinx Workspace file
-#	located at /template/template.apw. Modify the communication
+#	located at template/template.apw. Modify the communication
 #	settings, save the workspace, and close NetLinx Studio.
 #
 # EXECUTION
@@ -29,18 +33,16 @@
 #
 #	On Windows, the fastest and easiest way to use this script is
 #	through the command line. Open Windows Explorer and browse
-#	to the folder of your compiled Duet .jar file. Hold shift
-#	and right-click in the empty space of the file browser pane,
-#	then select "Open command window here" from the context menu.
+#	to the folder of your compiled Duet .jar file. With no file
+#	selected, hold shift and right-click in the empty space of
+#	the file browser pane, then select "Open command window here"
+#	from the context menu.
 #
 #	Run this script and pass the Duet module as a parameter in
 #	the file path. Pressing the tab key will auto-complete the
 #	file name.
 #	
-#	Example: > duet-bootstrap My_Duet_File_dr1_0_0.jar
-#
-#	The script will generate a workspace and source file in the
-#	working directory.
+#	Example: >duet-bootstrap My_Duet_File_dr1_0_0.jar
 
 require 'rexml/document'
 
@@ -128,6 +130,7 @@ File.open("#{params[:projectName]}.apw", 'w') do |file|
 	file << xml
 end
 
+
 # Import NetLinx source code file template.
 template = File.open("#{templatePath}/template.axs", 'r').read
 
@@ -136,6 +139,28 @@ template.gsub!(/%%_MODULE_NAME_%%/, params[:duetModuleName])
 
 File.open("#{params[:projectName]}.axs", 'w') do |file|
 	file << template
+end
+
+puts 'Generated project.'
+
+
+# Check for NetLinx compiler.
+compilerPath = 'C:\Program Files (x86)\Common Files\AMXShare\COM\nlrc.exe'
+
+canCompile = File.exists?(compilerPath)
+unless canCompile
+	# Use path for 32-bit O/S and try again.
+	compilerPath = 'C:\Program Files\Common Files\AMXShare\COM\nlrc.exe'
+
+	canCompile = File.exists?(compilerPath)
+	unless canCompile
+		puts 'NetLinx compiler not found. Can\'t auto-compile.'
+	end
+end
+
+# Execute NetLinx compiler.
+if canCompile
+	system("\"#{compilerPath}\" \"#{File.absolute_path("#{params[:projectName]}.axs")}\"")
 end
 
 puts 'Done.'
