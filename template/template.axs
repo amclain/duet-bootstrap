@@ -13,13 +13,14 @@ PROGRAM_NAME='%%_PROJECT_NAME_%%'
 DEFINE_DEVICE
 
 vdvDuet = 41000:1:0;
+vdvNull	= 0:0:0;
 
 (***********************************************************)
 (*                 STARTUP CODE GOES BELOW                 *)
 (***********************************************************)
 DEFINE_START
 
-define_module '%%_MODULE_NAME_%%' duet(vdvDuet);
+define_module '%%_MODULE_NAME_%%' duet(vdvDuet, vdvNull);
 
 (***********************************************************)
 (*                     END OF PROGRAM                      *)
