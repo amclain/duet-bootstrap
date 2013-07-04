@@ -1,3 +1,5 @@
+#! /usr/bin/env ruby
+
 # Duet Bootstrap
 # v1.0.0
 #
@@ -68,7 +70,7 @@
 
 require 'rexml/document'
 
-templatePath = "#{File.dirname(__FILE__)}/template"
+templatePath = File.expand_path '../../lib/duet-bootstrap/template', __FILE__
 
 params = Hash.new
 

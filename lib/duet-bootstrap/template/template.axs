@@ -1,7 +1,10 @@
 (***********************************************************
     %%_PROJECT_NAME_%%
+    Duet Project Bootstrapper
     
-    Duet project bootstrapper.
+    This file was automatically generated with:
+    duet-bootstrap
+    https://sourceforge.net/p/duet-bootstrap/wiki/Home/
 ************************************************************)
 
 PROGRAM_NAME='%%_PROJECT_NAME_%%'
@@ -20,7 +23,7 @@ vdvNull	= 0:0:0;
 (***********************************************************)
 DEFINE_START
 
-define_module '%%_MODULE_NAME_%%' duet(vdvDuet, vdvNull);
+define_module '%%_MODULE_NAME_%%' duet(vdvDuet);
 
 (***********************************************************)
 (*                     END OF PROGRAM                      *)
