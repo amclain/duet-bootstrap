@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 
 # Duet Bootstrap
-# v1.0.0
+# v1.1.1
 #
 # Website: https://sourceforge.net/projects/duet-bootstrap
 #
@@ -25,10 +25,11 @@
 #
 # CONFIGURATION
 #
-#	It is recommended, although not required, to add this script to
-#	your operating system's PATH environment variable so that the
-#	script can be called from within the folder of a Duet project.
-#	There is plenty of information on the internet on how to do this.
+# If this script was downloaded with the command
+#   gem install duet-bootstrap
+# then you should be able to execute it with the command
+# "duet-bootstrap", as long as your Ruby installation has been
+# added to your system environment variables.
 #
 #	If you would like to change the default AMX master that will be
 #	used when generating workspaces, open the NetLinx Workspace file
@@ -44,7 +45,8 @@
 #	to the folder of your compiled Duet .jar file. With no file
 #	selected, hold shift and right-click in the empty space of
 #	the file browser pane, then select "Open command window here"
-#	from the context menu.
+#	from the context menu. Alternatively, the command line can
+# be launched from Start -> Run and typing "cmd" in the box.
 #
 #	Run this script and pass the Duet module as a parameter in
 #	the file path. Pressing the tab key will auto-complete the
