@@ -23,7 +23,7 @@ vdvNull	= 0:0:0;
 (***********************************************************)
 DEFINE_START
 
-define_module '%%_MODULE_NAME_%%' duet(vdvDuet);
+define_module '%%_MODULE_NAME_%%' duet(vdvDuet, vdvNull);
 
 (***********************************************************)
 (*                     END OF PROGRAM                      *)
